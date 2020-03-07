@@ -1,0 +1,50 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-10 mx-auto">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h4>Ingresa una nueva entrada</h4>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="loginForm" (ngSubmit)="onSubmitNewNote(loginForm.value)">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Ingrese el titulo</label>
+                            <input type="text" class="form-control" name="title" formControlName="title"
+                                id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </div>
+                        <div *ngIf="loginForm.get('title').errors && (loginForm.get('title').touched || loginForm.get('title').dirty)"
+                            class="alert alert-danger" role="alert">
+                            El campo del titulo es obligatorio
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Enlace custom</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                name="redirectUrl" formControlName="redirectUrl" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Ingrese la nota</label>
+                            <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="30"
+                                formControlName="description"></textarea>
+                        </div>
+                        <div *ngIf="loginForm.get('description').errors && (loginForm.get('description').touched || loginForm.get('description').dirty)"
+                            class="alert alert-danger" role="alert">
+                            El campo del descripción es obligatorio
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlFile1">Foto de Portada</label>
+                            <input type="file" name="fileUrlImg" formControlName="fileUrlImg" class="form-control-file"
+                                id="exampleFormControlFile1" (change)="uploadFile($event)">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Enlace Img</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                name="fileUrl" formControlName="fileUrl" disabled>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block"
+                            [disabled]="loginForm.invalid">Guardar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

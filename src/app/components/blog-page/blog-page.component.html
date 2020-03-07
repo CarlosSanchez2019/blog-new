@@ -1,0 +1,21 @@
+<div class="spinner-border text-primary" *ngIf="!items; else load">
+    <span class="sr-only">Loading...</span>
+</div>
+
+<ng-template #load>
+    <div class="container">
+
+        <div class="row">
+            <div class="card mt-4 col-md-4" style="width: 18rem;" *ngFor="let item of items | async">
+                <img src="{{item.fileUrl}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{item.title}}</h5>
+                    <p class="card-text">{{item.description}}</p>
+                    <a routerLink="/blog/{{item.redirectUrl}}" class="btn btn-primary">Ver más...</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</ng-template>
